@@ -1,0 +1,39 @@
+# Set all target’s visibility in this package to "public"
+package(default_visibility = ["//visibility:public"])
+
+# Load `rules_haskell` rules
+load(
+    "@rules_haskell//haskell:defs.bzl",
+    "haskell_library",
+    "haskell_binary",
+)
+
+# Share a list of compiler flags between the library and
+# the executable
+shared_compiler_flags = [
+    "-XNoImplicitPrelude",
+    "-XOverloadedStrings",
+]
+
+haskell_library(
+    name = "example_lib",
+    src_strip_prefix = "library",
+    srcs = glob(['library/**/*.hs']),
+
+    compiler_flags = shared_compiler_flags,
+    deps = [
+        "@snapshot//:rio",
+    ],
+)
+
+haskell_binary(
+    name = "example_main",
+    srcs = [":executables/Main.hs"],
+
+    compiler_flags = shared_compiler_flags,
+    deps = [
+        "@snapshot//:rio",
+        # Project libraries
+        ":example_lib",
+    ],
+)
