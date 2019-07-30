@@ -1,6 +1,7 @@
 module Main where
 
-import RIO.Simple.Prelude
+import RIO
+import RIO.Prelude.Simple (runSimpleApp)
 
 import Entrypoint (app)
 
