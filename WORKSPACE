@@ -5,8 +5,8 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 # Download a version of `rules_haskell` that fixes 
 # the macOS bindist rules
-rules_haskell_version = "8eee207eb01a9d2c369bc666fc50dfb37d95934a"
-rules_haskell_sha256 = "981a34758ef12ea1426887826c8dd02ef550f52e75520dcb39bd8fff4c375317"
+rules_haskell_version = "ea922cda905607fe42aa9abab9a664653300692a"
+rules_haskell_sha256 = "a658e90e6f834ba10c3d7a5a7918557db5270ff83dcd0a2c928a2ae548f1e09e"
 
 http_archive(
     name = "rules_haskell",
