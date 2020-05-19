@@ -1,1 +1,5 @@
-resolver: lts-13.30
+resolver: lts-15.13
+name: bazel-bindist-sandbox-1.0
+packages:
+  - git: https://github.com/tclem/proto-lens-jsonpb.git
+    commit: 5d40444be689bef1e12cbe38da0261283775ec64
