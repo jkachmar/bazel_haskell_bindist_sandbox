@@ -1,19 +1,22 @@
-# Set all target’s visibility in this package to "public"
+# Set all target’s visibility in this package to "public".
 package(default_visibility = ["//visibility:public"])
 
-# Load `rules_haskell` rules
+# Load rules_haskell rules.
 load(
     "@rules_haskell//haskell:defs.bzl",
+    "haskell_toolchain_library",
     "haskell_library",
     "haskell_binary",
 )
 
-# Share a list of compiler flags between the library and
-# the executable
 shared_compiler_flags = [
     "-XNoImplicitPrelude",
     "-XOverloadedStrings",
-]
+];
+
+# haskell_toolchain_library can access builtin GHC packages and assign them a
+# bazel target name, so that they can be referenced as dependencies.
+# haskell_toolchain_library(name = "base")
 
 haskell_library(
     name = "example_lib",
@@ -32,8 +35,7 @@ haskell_binary(
 
     compiler_flags = shared_compiler_flags,
     deps = [
-        "@snapshot//:rio",
-        # Project libraries
         ":example_lib",
+        "@snapshot//:rio",
     ],
 )
